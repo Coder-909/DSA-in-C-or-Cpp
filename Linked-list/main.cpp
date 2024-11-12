@@ -7,16 +7,22 @@ struct Node{
     int value;
     struct Node *next;
 };
-struct Node *head;
+Node *head;
 
-void insert_at_beginning(struct Node **list,int n);
-void print_list(struct Node *list);
+void insert_at_beginning(Node **list,int n);
+void print_list(Node *list);
+void insert_at_nth(Node **list, int n,int p);
+void delete_nth(Node **list,int p);
+void reverse_list(Node **list);
 
 int main(){
-
+    insert_at_beginning(&head,1);
     insert_at_beginning(&head,2);
     insert_at_beginning(&head,3);
     insert_at_beginning(&head,4);
+    insert_at_nth(&head,5,3);
+    insert_at_nth(&head,6,1);
+    // delete_nth(&head,4);
 
     print_list(head);
     cout <<endl;
@@ -24,24 +30,63 @@ int main(){
 }
 
 
-void insert_at_beginning(struct Node **list , int n){
-    struct Node *temp1 = new Node();
+void insert_at_beginning(Node **list , int n){
+    Node *temp1 = new Node();
     temp1->value = n;
     temp1->next = (*list);
     *list = temp1;
 }
 // void insert_at_beginning(int n){
-//     struct Node *temp1 = new Node();
+//     Node *temp1 = new Node();
 //     temp1->value = n;
 //     temp1->next = head->next;
 //     head = temp1;
 // }
 
-void print_list(struct Node *list){
-    struct Node *temp1 = list;
+void print_list(Node *list){
+    Node *temp1 = list;
     while(temp1 != NULL){
         cout << temp1->value << " ";
         temp1 = temp1->next;
     };
     cout << endl;
+}
+
+void insert_at_nth(Node **list,int n,int p){
+    Node *temp1 = *list;
+    if(p==1){
+        Node *temp2=new Node();
+        temp2->value= n;
+        temp2->next= temp1;
+        *list = temp2;
+        return;
+    }
+
+    for(int i =0;i<p-2;i++){
+        temp1 = temp1->next;
+    }
+    Node *temp2 = new Node();
+    temp2->value= n;
+    temp2->next = temp1->next;
+    temp1->next = temp2;
+}
+
+void delete_nth(Node **list,int p){
+    Node *temp1 = *list;
+    if(p==1){
+        temp1 = temp1->next;
+        *list = temp1;
+        return;
+    }   
+
+    for(int i =0;i<p-2;i++){
+        temp1 = temp1->next;
+    }
+    Node *temp2 = temp1->next;
+    temp1->next = temp2->next;
+}
+
+void reverse_nth(Node **list){
+
+    
 }
