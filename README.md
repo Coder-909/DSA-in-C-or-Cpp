@@ -1,3 +1,3 @@
-# C/C++ questions
+# C/C++ DSA implementation
 
-Implementing different solutions to questions using C/C++(mostly C++)
+Implementing different solutions to DSA using C/C++(mostly C++)
