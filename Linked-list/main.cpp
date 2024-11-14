@@ -14,6 +14,8 @@ void print_list(Node *list);
 void insert_at_nth(Node **list, int n,int p);
 void delete_nth(Node **list,int p);
 void reverse_list(Node **list);
+void print_forward(Node *list);
+void print_reverse(Node *list);
 
 int main(){
     insert_at_beginning(&head,1);
@@ -25,6 +27,7 @@ int main(){
     // delete_nth(&head,4);
 
     print_list(head);
+    print_reverse(head);
     cout <<endl;
     return 0;
 }
@@ -86,7 +89,33 @@ void delete_nth(Node **list,int p){
     temp1->next = temp2->next;
 }
 
-void reverse_nth(Node **list){
+void reverse_list(Node **list){
+    Node *prev,*next,*current;
+    current = *list;
+    prev = NULL;
+    while(current != NULL){
+        next = current->next;
+        current->next = prev;
+        prev = current;
+        current = next;
+    }
+    *list = prev;
+}
 
-    
+void print_forward(Node *list){
+    Node *temp1 = list;
+    if(temp1 == NULL){
+        return;
+    }
+    cout << temp1->value << " ";
+    print_forward(temp1->next);
+}
+
+void print_reverse(Node *list){
+    Node *temp1 = list;
+    if(temp1 == NULL){
+        return;
+    }
+    print_reverse(temp1->next);
+    cout << temp1->value << " ";
 }
