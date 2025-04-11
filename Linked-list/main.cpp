@@ -27,7 +27,8 @@ int main(){
     // delete_nth(&head,4);
 
     print_list(head);
-    print_reverse(head);
+    //print_reverse(head);
+    //print_forward(head);
     cout <<endl;
     return 0;
 }
